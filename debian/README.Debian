@@ -1,0 +1,11 @@
+python-autoprofile for Debian
+----------------------
+
+This package adds a diversion to /usr/bin/python - user with care.
+
+The effect of the diversion can be controlled with the /etc/python-autoprofile/PROFILING_FREQ
+file.
+
+If this file is empty the diversion should do nothing.
+
+ -- Roger Gammans <rgammans@gammascience.co.uk>  Tue, 20 May 2014 16:39:06 +0100

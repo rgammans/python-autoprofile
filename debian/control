@@ -1,0 +1,19 @@
+Source: python-autoprofile
+Section: python
+Priority: optional
+Maintainer: Roger Gammans <rgammans@gammascience.co.uk>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.3
+#Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/python-autoprofile.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/python-autoprofile.git;a=summary
+
+Package: python-autoprofile
+Architecture: all
+Depends: ${misc:Depends}, python
+Description: Python performance adaptor
+ This package wraps the python interpreter in such a way that
+ a proportion of the process invoked with it , are run with profiling
+ enabled. Profiles are stored in a directory with script name and 
+ timestamp elemnts in the filename.
+

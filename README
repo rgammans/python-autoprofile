@@ -1,0 +1,28 @@
+python-autoprofile
+==================
+
+This package uses dpkg-divert to wrap the standard python interpreter.
+
+
+The wrapper adds ARGS in the XPYADD_ARGS environment variables to 
+the python command line. Also if PROFILING is defined it may run the 
+script under the cProfile modules profiler.
+
+
+If profiling is enable the wrapper checks the /etc/python-autoprofile/PROFILING_FREQ
+file to enable statistical sampling of requests. If this file is empty
+or then no-prfiling is done.
+
+Otherwise the contents of the file are treated as an integer describing the fraction
+of scritps to profile. ie. If the file contains '20'  5%  of the invocations on the 
+python cause a profiled run of python.
+
+Each profiled invocation of python writes the stats file to 
+/var/spool/autoprofile/ with a unique generated file based on the host name
+it was run on the timestamp, and the name of the script.
+
+This information allows you to coallesce the data from multiple servers in
+a cluster without losing the information of which one ran each script.
+
+Additionally you should be able to target historic information on specific
+scripts.

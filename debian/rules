@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_install:
+	install -D python $$(pwd)/debian/python-autoprofile/usr/bin/python
+	install --mode 644 -D PROFILING_FREQ $$(pwd)/debian/python-autoprofile/etc/python-autoprofile/PROFILING_FREQ
+	install --mode 644 -D README $$(pwd)/debian/python-autoprofile/usr/share/doc/python-autoprofile/README
+	mkdir -p $$(pwd)/debian/python-autoprofile/var/spool/python-autoprofile
+

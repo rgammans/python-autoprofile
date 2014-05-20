@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#
+# This is a wrapper around the python interpreter from the
+# python-autoprofile package.
+# 
+# This wrapper adds ARGS in the XPYADD_ARGS environment variables to 
+# the python command line. Also if PROFILING is defined it may run the 
+# script under the cProfile modules profiler.
+#
+#
+
+
+
+PYFILE=$1; shift;
+FREQ=`cat /etc/python-autoprofile/PROFILING_FREQ`
+STATSDIR='/var/spool/python-autoprofile/'
+
+###
+### Check a FREQ file to enable statistical
+### sampling of requests.
+###
+### This section is designed to only use bash internals
+### as it runs on every invocation of python wether or
+### not we enable the profiling.
+### 
+if [ "$PROFILING" ] && ! [ -z "$FREQ" ] && ! [ -z "$PYFILE" ]; then
+
+
+    #
+    #The use of random here allows (wrong) for this to
+    #be manipulated by an attacker who has access to the environment.
+    #
+    # See the bash manpage on $RANDOM for why.
+
+	if [ "$((RANDOM%$FREQ))" == "0" ]; then 
+		PROFILING=1
+	else 
+		PROFILING=""
+	fi; 
+else 
+	PROFILING=""
+fi;
+
+
+if [ "$PROFILING" ]; then
+	TS=$(date --iso-8601=seconds --utc | tr : - | sed 's/+.*//');
+	CPYFILE=$(readlink -f $PYFILE)
+	STAT_SFX=$TS.`hostname`.$$.stats
+	STATS_FILE=${STATSDIR}${CPYFILE//\//%}.$STAT_SFX
+
+	XPYADD_ARGS="$XPYADD_ARGS -m cProfile -o $STATS_FILE";
+
+#	/usr/bin/python2.7  $XPYADD_ARGS $PYFILE $*;
+	##
+	##If we didn't what to do the below we could combbined the line 
+	## above with the exec in the else clause!
+	##
+#	gzip $STATS_FILE;
+#else
+fi
+
+exec /usr/bin/python.divert-python-autoprofile  $XPYADD_ARGS $PYFILE $*;
+
+#fi

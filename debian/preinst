@@ -1,0 +1,11 @@
+pkg=python-autoprofile
+
+if
+        test "$1" = install 
+then
+        dpkg-divert --package "$pkg" --add --rename \
+                --divert "/usr/bin/python.divert-$pkg" /usr/bin/python
+fi
+
+
+#DEBHELPER#
