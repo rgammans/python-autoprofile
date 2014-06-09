@@ -22,5 +22,6 @@ remove,*|abort-install,*|disappear,*|*,y)
         ;;
 esac
 
+delgroup pyautoprofile
 
 #DEBHELPER#
