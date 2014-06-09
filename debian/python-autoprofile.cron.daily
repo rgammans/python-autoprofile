@@ -1,0 +1,10 @@
+
+YESTDAY=$(date --iso -d'yesterday');
+cd /var/spool/python-autoprofile;
+
+
+if zip stats_${YESTDAY}.zip *${YESTDAY}T*.stats ; do
+    chgrp pyautoprofile stats_${YESTDAY}.zip;
+    rm -f *${YESTDAY}T*.stats;
+fi
+
