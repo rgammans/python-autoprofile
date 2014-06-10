@@ -1,1 +1,2 @@
 chgrp pyautoprofile /var/spool/python-autoprofile
+chmod 2773 /var/spool/python-autoprofile
