@@ -20,8 +20,10 @@ remove,*|abort-install,*|disappear,*|*,y)
         dpkg-divert --package "$pkg" --remove --rename \
                 --divert "/usr/bin/python.divert-$pkg" /usr/bin/python
         ;;
+purge,*)
+    delgroup pyautoprofile
+;;
 esac
 
-delgroup pyautoprofile
 
 #DEBHELPER#
