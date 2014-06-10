@@ -5,6 +5,7 @@ cd /var/spool/python-autoprofile;
 
 if zip stats_${YESTDAY}.zip *${YESTDAY}T*.stats ; then
     chgrp pyautoprofile stats_${YESTDAY}.zip;
+    chmod 640 stats_${YESTDAY}.zip;
     rm -f *${YESTDAY}T*.stats;
 fi
 
