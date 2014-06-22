@@ -60,6 +60,6 @@ if [ "$PROFILING" ]; then
 #else
 fi
 
-exec /usr/bin/python.divert-python-autoprofile  $XPYADD_ARGS $PYFILE $*;
+exec python.divert-python-autoprofile  $XPYADD_ARGS $PYFILE $*;
 
 #fi
