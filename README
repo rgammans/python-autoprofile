@@ -3,6 +3,7 @@ python-autoprofile
 
 This package uses dpkg-divert to wrap the standard python interpreter.
 
+Available form github: http://github.com/rgammans/python-autoprofile
 
 The wrapper adds ARGS in the XPYADD_ARGS environment variables to 
 the python command line. Also if PROFILING is defined it may run the 
