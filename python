@@ -60,6 +60,8 @@ if [ "$PROFILING" ]; then
 #else
 fi
 
-exec python.divert-python-autoprofile  $XPYADD_ARGS $PYFILE $*;
+## $@ is  the array version of the arguments, list so "$@" , *should*
+#  quote each argument individually.
+exec python.divert-python-autoprofile  $XPYADD_ARGS $PYFILE "$@";
 
 #fi
