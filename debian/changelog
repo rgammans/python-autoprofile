@@ -1,3 +1,9 @@
+python-autoprofile (0.4) UNRELEASED; urgency=medium
+
+  * Fix quoting issue wth multiple commandline arguments 
+
+ -- Roger Gammans <rgammans@gammascience.co.uk>  Fri, 06 Mar 2015 13:27:43 +0000
+
 python-autoprofile (0.3) unstable; urgency=medium
 
   * Fix compatible issues with virtualenv 
